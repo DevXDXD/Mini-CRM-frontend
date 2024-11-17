@@ -1,0 +1,279 @@
+/* General Enhancements */
+.max-w-lg {
+  max-width: 700px;
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url('C:/Users/Dev Satija/XenoCRMHosted/mini-crm-app/client/public/Customer.jpg') no-repeat center center/cover;
+  background-size: cover;
+  padding: 20px;
+}
+
+/* Form Container */
+.form-container {
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Transparent border */
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  backdrop-filter: blur(8px); /* Frosted glass effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  max-width: 700px;
+  width: 100%; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Heading */
+.heading {
+  font-size: 2.2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #4caf50;
+  padding-bottom: 0.5rem;
+  margin-top: -20px;
+  text-transform: uppercase;
+}
+
+.heading::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #4caf50;
+  margin: 0 auto 1rem;
+}
+
+/* Rule Item Styling */
+.rules-container {
+  padding-bottom: 30px;
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.rule-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rule-fields,
+.rule-operator,
+.rule-value {
+  width: 30%;
+  margin-right: 10px;
+}
+
+.rule-fields select,
+.rule-operator select,
+.rule-value input[type='text'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.rule-fields select:focus,
+.rule-operator select:focus,
+.rule-value input[type='text']:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.3);
+  outline: none;
+}
+
+.rule-value input[type='text']:invalid {
+  border-color: #f44336;
+}
+
+/* Add Rule Button */
+.add-rule-button {
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-rule-button:hover {
+  background: linear-gradient(90deg, #66bb6a, #388e3c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-rule-button:active {
+  background: #388e3c;
+}
+
+/* Remove Rule Button */
+.rule-remove button {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rule-remove button:hover {
+  background-color: #e03e3e;
+}
+
+/* Message Field */
+.message-field input[type='text'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.message-field input[type='text']:focus {
+  border-color: #4caf50;
+}
+
+/* Check Audience Button */
+.check-audience-button {
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.check-audience-button:hover {
+  background: linear-gradient(90deg, #66bb6a, #388e3c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Audience Size Display */
+.audience-size {
+  color: #008000;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Logical Operator Field */
+.logical-operator-field select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logical-operator-field select:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 91, 187, 0.4);
+}
+
+/* Scheduled At Field */
+.scheduled-at-field input[type='datetime-local'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scheduled-at-field input[type='datetime-local']:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 6px rgba(0, 91, 187, 0.4);
+}
+
+/* Create Campaign Button */
+/* .submit-button {
+  text-align: center;
+  margin-top: 20px;
+} */
+
+.submit-button {
+  text-align: center;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  color: white;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+  text-transform: uppercase;
+}
+
+.submit-button button:hover {
+  background: linear-gradient(90deg, #66bb6a, #388e3c);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button button:active {
+  background: #388e3c;
+  transform: scale(0.98);
+}
+
+.submit-button button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
+}
+
+/* Error Message */
+.error-message {
+  color: #f44336;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Fields: Focus State */
+input:focus, select:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+}
