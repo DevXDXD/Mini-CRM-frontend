@@ -11,7 +11,7 @@ const AdminPage = () => {
     const fetchCampaigns = async () => {
       try {
         console.log('Fetching campaigns...'); // Debugging
-        const response = await axios.get('http://localhost:5000/api/admin/campaigns');
+        const response = await axios.get('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/admin/campaigns');
         console.log('Campaigns fetched:', response.data); // Debugging
         setCampaigns(response.data);
         setLoading(false);

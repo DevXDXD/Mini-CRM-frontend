@@ -37,7 +37,7 @@ const AudienceForm = () => {
   const handleCheckAudienceSize = async (values) => {
     console.log('Checking audience size...');
     try {
-      const response = await axios.post('http://localhost:5000/api/campaigns/check-audience-size', values);
+      const response = await axios.post('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/campaigns/check-audience-size', values);
       console.log('Audience size checked:', response.data.audienceSize);
       setAudienceSize(response.data.audienceSize);
     } catch (error) {
@@ -48,7 +48,7 @@ const AudienceForm = () => {
   // const handleSubmit = async (values, { setSubmitting }) => {
   //   console.log('Submitting campaign...');
   //   try {
-  //     await axios.post('http://localhost:5000/api/campaigns/create-scheduled', values);
+  //     await axios.post('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/campaigns/create-scheduled', values);
   //     console.log('Campaign created successfully');
   //     alert('Campaign created successfully');
   //     navigate('/home/audience');
@@ -69,7 +69,7 @@ const AudienceForm = () => {
   
       const payload = { ...values, googleId }; // Include googleId in the payload
       const response = await axios.post(
-        'http://localhost:5000/api/campaigns/create-scheduled',
+        'https://github.com/DevXDXD/Mini-CRM-frontend.git/api/campaigns/create-scheduled',
         payload
       );
   
