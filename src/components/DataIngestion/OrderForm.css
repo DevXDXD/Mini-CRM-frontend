@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background :url('C:\Users\Dev Satija\XenoCRMHosted\mini-crm-app\client\public\Customer.jpg'); /* Gradient background */
+  background :url('../../../public/Customer.jpg'); /* Gradient background */
   background-size: cover;
   padding: 20px;
   box-sizing: border-box;
