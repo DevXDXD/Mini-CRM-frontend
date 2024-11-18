@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('C:/Users/Dev Satija/XenoCRMHosted/mini-crm-app/client/public/Customer.jpg') no-repeat center center/cover;
+  background: url('../../../public/Customer.jpg') no-repeat center center/cover;
   background-size: cover;
   padding: 20px;
 }
