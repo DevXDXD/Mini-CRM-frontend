@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://github.com/DevXDXD/Mini-CRM-frontend.git/api';
+const API_BASE_URL = 'https://mini-crm-backend-flem.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

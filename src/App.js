@@ -11,16 +11,24 @@ const App = () => {
     const checkAuthStatus = async () => {
       try {
         console.log('Checking authentication status...');
-        const response = await fetch('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/auth/status', {
-          credentials: 'include'
-        });
-        console.log('Response from auth status:', response);
-        const data = await response.json();
-        console.log('Authentication data:', data);
-        setIsAuthenticated(data.isAuthenticated);
-        setLoading(false);
+        const response = await fetch(
+          'https://mini-crm-backend-flem.onrender.com/api/auth/status',
+          {
+            credentials: 'include', // Include cookies
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Authentication data:', data);
+
+          setIsAuthenticated(data.isAuthenticated);
+        } else {
+          console.error('Failed to fetch auth status:', response.statusText);
+        }
       } catch (error) {
         console.error('Error checking auth status:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -31,14 +39,17 @@ const App = () => {
   const handleLogout = async () => {
     try {
       console.log('Initiating logout...');
-      const response = await fetch('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include', // Include credentials if using sessions/cookies
-      });
-      console.log('Response from logout:', response);
+      const response = await fetch(
+        'https://mini-crm-backend-flem.onrender.com/api/auth/logout',
+        {
+          method: 'POST',
+          credentials: 'include', // Include cookies to destroy the session
+        }
+      );
+
       if (response.ok) {
         console.log('Logout successful');
-        setIsAuthenticated(false); // Update React state after successful logout
+        setIsAuthenticated(false); // Reset authentication state
       } else {
         console.error('Logout failed:', await response.text());
       }
@@ -56,19 +67,26 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route
-            path="/login"
-            element={<Login onLogin={() => setIsAuthenticated(true)} />}
-          />
-          <Route
-            path="/home/*"
-            element={isAuthenticated ? <Home onLogout={handleLogout} /> : <Navigate to="/login" />}
-          />
-          <Route path="/" element={<Navigate to={isAuthenticated ? "/home" : "/login"} />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route
+          path="/login"
+          element={<Login onLogin={() => setIsAuthenticated(true)} />}
+        />
+        <Route
+          path="/home/*"
+          element={
+            isAuthenticated ? (
+              <Home onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/"
+          element={<Navigate to={isAuthenticated ? '/home' : '/login'} />}
+        />
+      </Routes>
     </Router>
   );
 };

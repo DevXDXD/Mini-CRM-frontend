@@ -12,20 +12,29 @@ const Login = ({ onLogin }) => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await fetch('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/auth/status', {
-          credentials: 'include',
-        });
-        const data = await response.json();
-
-        if (data.isAuthenticated) {
-          if (data.googleId) {
-            localStorage.setItem('googleId', data.googleId);
-          } else if (data.userId) {
-            localStorage.setItem('userId', data.userId);
+        const response = await fetch(
+          'https://mini-crm-backend-flem.onrender.com/api/auth/status',
+          {
+            credentials: 'include', // Ensure cookies are sent
           }
-          onLogin();
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Authentication data:', data);
+
+          if (data.isAuthenticated) {
+            if (data.googleId) {
+              localStorage.setItem('googleId', data.googleId);
+            } else if (data.userId) {
+              localStorage.setItem('userId', data.userId);
+            }
+            onLogin();
+          } else {
+            navigate('/login'); // Redirect to login if not authenticated
+          }
         } else {
-          navigate('/login');
+          console.error('Error fetching auth status:', response.statusText);
         }
       } catch (error) {
         console.error('Error checking authentication status:', error);
@@ -36,7 +45,8 @@ const Login = ({ onLogin }) => {
   }, [onLogin, navigate]);
 
   const handleGoogleLogin = () => {
-    window.location.href = 'https://github.com/DevXDXD/Mini-CRM-frontend.git/api/auth/google';
+    // Redirect to the backend Google OAuth URL
+    window.location.href = 'https://mini-crm-backend-flem.onrender.com/api/auth/google';
   };
 
   const handleLogin = async (e) => {
@@ -49,23 +59,30 @@ const Login = ({ onLogin }) => {
     }
 
     try {
-      const response = await fetch('https://github.com/DevXDXD/Mini-CRM-frontend.git/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-        credentials: 'include',
-      });
+      const response = await fetch(
+        'https://mini-crm-backend-flem.onrender.com/api/auth/login',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+          credentials: 'include', // Send cookies with the request
+        }
+      );
 
-      const data = await response.json();
-      if (data.success) {
-        localStorage.setItem('userId', data.userId);
-        console.log('Local Storage after login:');
-        console.log('userId:', localStorage.getItem('userId'));
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful:', data);
 
-        onLogin();
-        navigate('/home');
+        if (data.success) {
+          localStorage.setItem('userId', data.userId);
+          onLogin();
+          navigate('/home'); // Redirect to home after login
+        } else {
+          setError(data.message || 'Invalid username or password.');
+        }
       } else {
-        setError(data.message || 'Invalid username or password.');
+        console.error('Login failed:', response.statusText);
+        setError('Invalid credentials. Please try again.');
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -75,18 +92,14 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className={styles['login-page']}>
-      {/* Left side for CRM */}
       <div className={styles['left-container']}>
         <h1 className={styles['left-text']}>CRM</h1>
       </div>
 
-      {/* Login Container */}
       <div className={styles['login-container']}>
         <h1 className={styles['title']}>Welcome to CRM</h1>
         <p className={styles['subtitle']}>Effortlessly build stronger customer connections.</p>
         <div className={styles['login-box']}>
-
-          {/* Username and Password Login Form */}
           <form onSubmit={handleLogin} className={styles['login-form']}>
             <input
               type="text"
@@ -108,7 +121,6 @@ const Login = ({ onLogin }) => {
             {error && <div className={styles['error-message']}>{error}</div>}
           </form>
 
-          {/* Google Login Button */}
           <button
             onClick={handleGoogleLogin}
             className={styles['login-with-google-btn']}
